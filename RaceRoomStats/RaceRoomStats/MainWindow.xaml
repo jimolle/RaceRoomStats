@@ -13,19 +13,29 @@
 
     <Grid Background="#FF151515">
         <Grid.RowDefinitions>
-            <RowDefinition Height="50px"/>
+            <RowDefinition Height="125px"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <Label x:Name="label_minApk" Content="Best lap times:" HorizontalAlignment="Left" Margin="69,17,0,3" VerticalAlignment="Center" Foreground="White" Height="30" />
-        <ComboBox x:Name="comboBox_BestLapTimes" 
-                  HorizontalAlignment="Left" Margin="167,15,0,0" VerticalAlignment="Top" Width="120" Height="30" VerticalContentAlignment="Center" Foreground="#FF292929" Background="White" BorderBrush="White">
+        <WrapPanel>
+            <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="60,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White" FontSize="48"><Run Text="RaceRoomStats"/>
+            </TextBlock>
+            <Image x:Name="image" Margin="50,0,0,0" Source="Images/los-viperos.png" Height="116" Width="200"/>
+        </WrapPanel>
 
-        </ComboBox>
-        <Button x:Name="button_showBestLapTimes" Content="Show" Margin="308,15,0,5" VerticalAlignment="Center" Height="30"  Width="82" Foreground="#FFF0F0F0" BorderBrush="Black" Background="#FF1BD33D" HorizontalAlignment="Left" BorderThickness="0"/>
+        <WrapPanel VerticalAlignment="Bottom" Margin="0,0,0,10">
+            <Label x:Name="label_minApk" Content="Best lap times:" Margin="60,0,0,0" Foreground="White" Height="30" />
+            <ComboBox x:Name="comboBox_BestLapTimes" 
+                      Width="160" Height="30" VerticalContentAlignment="Center" Foreground="#FF292929" Background="White" BorderBrush="White">
+            </ComboBox>
+            <Button x:Name="button_showBestLapTimes" Content="Show" Height="30"  Width="82" Foreground="#FFF0F0F0" BorderBrush="Black" Background="#FF1BD33D" BorderThickness="0" Click="button_showBestLapTimes_Click"/>
+        </WrapPanel>
+
+        <TextBox x:Name="textBox_output" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Row="1" TextWrapping="Wrap" Text="       ** Welcome to RaceRoomStats v2.0! **" Background="#FF292929" Foreground="#FFE8E8E8" BorderThickness="0" Padding="5,20,5,5" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Visible" FontFamily="Lucida Console" FontSize="14" 
+                    TextBlock.LineHeight="22" 
+                    TextBlock.LineStackingStrategy="BlockLineHeight" />
 
 
-        <TextBox x:Name="textBox_output" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Grid.Row="1" TextWrapping="Wrap" Text="Welcome to RaceRoomStats v2.0!" Background="#FF292929" Foreground="#FFE8E8E8" BorderThickness="0" Padding="5" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Visible" FontFamily="Lucida Console" FontSize="14" />
     </Grid>
 </Window>
 
