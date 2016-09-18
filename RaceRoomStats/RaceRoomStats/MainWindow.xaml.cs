@@ -88,21 +88,28 @@ namespace RaceRoomStats
             textBox_output.Text = "Loading...";
 
             var lapTimes = new List<LapTime>();
-            foreach (var session in _allRaceResults
-                .Where(n => n.Track == comboBox_BestLapTimes.Text)
-                .SelectMany(n => n.Sessions.Where(a => a.Type == "Race"))
-                )
+            //foreach (var session in _allRaceResults
+            //    .Where(n => n.Track == comboBox_BestLapTimes.Text)
+            //    .SelectMany(n => n.Sessions.Where(a => a.Type == "Race"))
+            //    )
+            //{
+            foreach (var raceResult in _allRaceResults
+                .Where(n => n.Track == comboBox_BestLapTimes.Text))
             {
-                foreach (var player in session.Players)
+                foreach (var sessions in raceResult.Sessions)
                 {
-                    foreach (var raceSessionLap in player.RaceSessionLaps.Where(n => n.Time > 0))
+                    foreach (var player in sessions.Players)
                     {
-                        lapTimes.Add(new LapTime()
+                        foreach (var raceSessionLap in player.RaceSessionLaps.Where(n => n.Time > 0))
                         {
-                            FullName = player.FullName,
-                            Car = player.Car,
-                            Time = int.Parse(raceSessionLap.Time.ToString())
-                        });
+                            lapTimes.Add(new LapTime()
+                            {
+                                FullName = player.FullName,
+                                Car = player.Car,
+                                Time = int.Parse(raceSessionLap.Time.ToString()),
+                                DateTime = raceResult.Time.ToString("ddd dd MMM HH:mm")
+                            });
+                        }
                     }
                 }
             }
@@ -127,8 +134,8 @@ namespace RaceRoomStats
 
                 var realTime = TimeSpan.FromMilliseconds(lap.Time);
                 string answer = $"{realTime.Minutes:D2}.{realTime.Seconds:D2}.{realTime.Milliseconds:D3}";
-
-                sb.Append("\t" + answer + " - " + lap.FullName.PadRight(20) + "[" + lap.Car + "]" + Environment.NewLine);
+                string car = $"[{lap.Car}]";
+                sb.Append("\t" + answer + " - " + lap.FullName.PadRight(20) + car.PadRight(30) + lap.DateTime + Environment.NewLine);
             }
 
             textBox_output.Text = sb.ToString();
