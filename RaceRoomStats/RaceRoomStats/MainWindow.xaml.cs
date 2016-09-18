@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows;
 using Newtonsoft.Json;
@@ -66,10 +67,10 @@ namespace RaceRoomStats
             FileInfo[] files;
             try
             {
-                var dir = new DirectoryInfo(@"C:\GIT\RaceRoomStats\RaceRoomStats\RaceRoomStats\bin\Debug\races\");
+                //var dir = new DirectoryInfo(@"C:\GIT\RaceRoomStats\RaceRoomStats\RaceRoomStats\bin\Debug\races\");
 
                 //release:
-                //var dir = new DirectoryInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\races\");
+                var dir = new DirectoryInfo(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"\races\");
                 files = dir.GetFiles().Where(n => n.Extension == ".json").OrderByDescending(p => p.LastWriteTime).ToArray();
             }
             catch (Exception)
