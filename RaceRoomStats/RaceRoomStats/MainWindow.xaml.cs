@@ -77,7 +77,7 @@ namespace RaceRoomStats
             {
                 files = new FileInfo[1];
                 MessageBox.Show("No races found in races folder. Press OK to close the app.");
-                //Environment.Exit(0);
+                Environment.Exit(0);
             }
 
             return files;
